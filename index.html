@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.min.js"></script>
+    <script src="js/jquery-1.11.3.js"></script>
+    <link rel="stylesheet" href="css/metro.css"/>
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <script src="js/metro.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body ng-app="wikipediaViewer">
+    <div ng-controller="viewer as Wiki">
+        <div class="container">
+            <div class="input-control text" data-role="input" style="width: 100%;">
+                <input type="text" ng-model="Wiki.title" ng-keypress="Wiki.wikiSearch($event)">
+                <button class="button" ng-click="Wiki.wikiSearch()"><span class="mif-search"></span></button>
+            </div>
+            <div class="listview">
+                <div class="list-group">
+                    <div class="list-group-content">
+                        <div class="list" ng-repeat="a in Wiki.resultados">
+                            <a href={{"http://en.wikipedia.org/?curid="+a.pageid}} style="width: 50%;">
+                                <span class="list-title" ng-style="{'color':'black'}"><strong>{{a.title}}</strong></span>
+                                <div class="list-data" >
+                                    {{a.extract}}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
